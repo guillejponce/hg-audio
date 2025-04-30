@@ -48,14 +48,14 @@
 @layer components {
   .hero {
     @apply h-screen relative overflow-hidden flex items-center justify-center text-center text-white;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7)),
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.5)),
       url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
   }
 
   .hero::before {
     content: '';
     @apply absolute inset-0 z-0;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7));
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.5));
   }
 
   .hero-content {
