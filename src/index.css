@@ -49,11 +49,17 @@
   .hero {
     @apply h-screen relative overflow-hidden flex items-center justify-center text-center text-white;
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7)),
-      url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover fixed;
+      url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+  }
+
+  .hero::before {
+    content: '';
+    @apply absolute inset-0 z-0;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7));
   }
 
   .hero-content {
-    @apply max-w-4xl px-8 py-12 opacity-0 transform translate-y-5 animate-fade-in;
+    @apply relative z-10 max-w-4xl px-8 py-12 opacity-0 transform translate-y-5 animate-fade-in;
   }
 
   .hero-title-section {
