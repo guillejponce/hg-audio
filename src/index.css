@@ -2,10 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.8),
+                 0 0 30px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
 @layer components {
   .hero {
     @apply h-screen relative overflow-hidden flex items-center justify-center text-center text-white;
-    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.7)),
       url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover fixed;
   }
 
@@ -23,7 +66,7 @@
 
   .hero-title {
     @apply text-4xl md:text-6xl font-bold mb-4 animate-text-glow text-white;
-    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(96, 165, 250, 0.3);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
   }
 
   .hero-subtitle {
@@ -36,8 +79,8 @@
   }
 
   .hero-icons .icon {
-    @apply text-4xl animate-float text-white/90;
-    text-shadow: 0 0 5px rgba(96, 165, 250, 0.5);
+    @apply text-4xl animate-float text-primary-light;
+    text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
 
   .scroll-indicator {
@@ -114,23 +157,151 @@
   }
 
   .price {
-    @apply inline-block px-4 py-2 bg-primary/10 text-primary font-bold rounded-full;
+    @apply inline-block px-4 py-2 bg-primary/10 text-primary font-bold rounded-full hover:bg-primary/20 transition-colors;
   }
 
   .contact-info {
     @apply max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg;
   }
 
-  .contact-info p {
-    @apply mb-4 transition-all duration-300 hover:translate-x-2 hover:text-primary;
+  .contact-item {
+    @apply flex items-center gap-4 p-6 bg-white rounded-xl shadow-lg hover:-translate-y-1 hover:shadow-primary/20 transition-all duration-300;
+  }
+
+  .contact-item svg {
+    @apply text-2xl text-primary;
+  }
+
+  .contact-item span {
+    @apply text-lg;
+  }
+
+  .payment-content {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto;
+  }
+
+  .payment-methods, .terms {
+    @apply bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-primary/20 transition-shadow;
+  }
+
+  .payment-methods svg, .terms svg {
+    @apply text-4xl text-primary mx-auto mb-6;
+  }
+
+  .payment-methods p, .terms p {
+    @apply text-lg text-gray-700;
   }
 
   .fab {
-    @apply fixed bottom-8 right-8 w-16 h-16 rounded-full bg-gradient-primary text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-xl;
+    @apply fixed bottom-8 right-8 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center shadow-lg hover:scale-110 hover:bg-primary-dark transition-all duration-300 z-50;
   }
 
   .fab svg {
     @apply text-2xl;
+  }
+
+  .observe-me {
+    @apply opacity-0 transform translate-y-5 transition-all duration-500;
+  }
+
+  .observe-me.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .about-card {
+    @apply bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl;
+  }
+
+  .about-image {
+    @apply h-64 md:h-80 relative overflow-hidden;
+  }
+
+  .about-text-container {
+    @apply p-8;
+  }
+
+  .about-text-content {
+    @apply mb-8;
+  }
+
+  .about-stats {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 py-6 border-t border-gray-200;
+  }
+
+  .stat-item {
+    @apply flex flex-col items-center text-center;
+  }
+
+  .stat-number {
+    @apply text-4xl font-bold text-primary mb-2;
+  }
+
+  .stat-label {
+    @apply text-gray-600;
+  }
+
+  .payment {
+    @apply py-24 px-8 max-w-7xl mx-auto opacity-0 transform translate-y-5 transition-all duration-500 relative bg-gray-50;
+  }
+
+  .payment.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .payment h2 {
+    @apply text-4xl font-bold text-center mb-12 text-primary;
+  }
+
+  .payment-content {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  .payment-card {
+    @apply bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .payment-header {
+    @apply flex flex-col items-center text-center mb-6;
+  }
+
+  .payment-icon {
+    @apply text-4xl text-primary mb-4;
+  }
+
+  .payment-header h3 {
+    @apply text-xl font-bold text-gray-800;
+  }
+
+  .payment-details {
+    @apply space-y-4;
+  }
+
+  .payment-highlight {
+    @apply text-center py-2 px-4 bg-primary/10 rounded-lg text-primary font-semibold;
+  }
+
+  .installation-info {
+    @apply text-center mb-4;
+  }
+
+  .free-zones {
+    @apply mt-2 space-y-1;
+  }
+
+  .free-zones li {
+    @apply text-gray-700;
+  }
+
+  .installation-extra {
+    @apply mt-4 pt-4 border-t border-gray-200;
+  }
+
+  .text-success {
+    @apply text-green-600;
+  }
+
+  .text-warning {
+    @apply text-amber-600 text-center;
   }
 }
 

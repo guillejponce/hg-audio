@@ -7,10 +7,13 @@ const Navigation = () => {
   const scrollDirection = useScrollDirection();
 
   const menuItems = [
-    { name: 'Home', to: 'hero' },
-    { name: 'About', to: 'about' },
-    { name: 'Products', to: 'products' },
-    { name: 'Contact', to: 'contact' },
+    { name: 'Inicio', to: 'hero' },
+    { name: 'Proceso', to: 'process' },
+    { name: 'Equipos', to: 'products' },
+    { name: 'Eventos', to: 'events' },
+    { name: 'Contacto', to: 'contact' },
+    { name: 'Pagos', to: 'payment' },
+    { name: 'Términos', to: 'terms' },
   ];
 
   return (
@@ -18,14 +21,14 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end h-16">
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6">
             {menuItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 smooth={true}
                 duration={500}
-                className="text-white/90 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-white/90 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
               >
                 {item.name}
               </Link>
@@ -38,7 +41,7 @@ const Navigation = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-white/90 hover:text-white focus:outline-none"
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">Abrir menú principal</span>
               <div className="w-6 h-6 flex flex-col justify-between">
                 <span className={`block h-0.5 w-full bg-current transform transition duration-300 ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
                 <span className={`block h-0.5 w-full bg-current transition duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
