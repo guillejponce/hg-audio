@@ -8,9 +8,11 @@ const Navigation = () => {
 
   const menuItems = [
     { name: 'Inicio', to: 'hero' },
-    { name: 'Proceso', to: 'process' },
+    { name: 'Video', to: 'video-showcase' },
     { name: 'Equipos', to: 'products' },
+    { name: 'Proceso', to: 'process' },
     { name: 'Eventos', to: 'events' },
+    { name: 'Testimonios', to: 'testimonials' },
     { name: 'Contacto', to: 'contact' },
     { name: 'Pagos', to: 'payment' },
     { name: 'Términos', to: 'terms' },
