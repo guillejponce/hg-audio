@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaPhone, FaHeadphones, FaMicrophone, FaMusic, FaVolumeUp, FaWhatsapp, FaInstagram, FaEnvelope, FaCreditCard, FaFileAlt, FaShieldAlt, FaDownload, FaPercent, FaTimes, FaSearch } from 'react-icons/fa';
+import { FaPhone, FaHeadphones, FaMusic, FaVolumeUp, FaWhatsapp, FaInstagram, FaEnvelope, FaCreditCard, FaFileAlt, FaShieldAlt, FaDownload, FaPercent, FaTimes, FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import logo from '../assets/hg_audio_logo.png';
 import event1 from '../assets/events/event_1.jpeg';
 import event2 from '../assets/events/event_2.jpeg';
@@ -15,6 +15,7 @@ const Home = () => {
   const [visibleSections, setVisibleSections] = useState({});
   const [isDiscountFormOpen, setIsDiscountFormOpen] = useState(false);
   const [showDiscountIcon, setShowDiscountIcon] = useState(false);
+  const [userClosedDiscount, setUserClosedDiscount] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -32,15 +33,15 @@ const Home = () => {
           }));
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" }
     );
 
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => observer.observe(section));
 
-    // Handle scroll to show discount icon
+    // Handle scroll to show discount icon only if user hasn't closed it
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      if (window.scrollY > 300 && !userClosedDiscount) {
         setShowDiscountIcon(true);
       }
     };
@@ -52,7 +53,7 @@ const Home = () => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [userClosedDiscount]);
 
   const scrollToContact = () => {
     const contactSection = document.querySelector('#contact');
@@ -108,6 +109,15 @@ const Home = () => {
   const hideDiscountCompletely = () => {
     setIsDiscountFormOpen(false);
     setShowDiscountIcon(false);
+    setUserClosedDiscount(true);
+  };
+
+  const goToPreviousEvent = () => {
+    setCurrentEvent(prev => (prev === 0 ? 4 : prev - 1));
+  };
+
+  const goToNextEvent = () => {
+    setCurrentEvent(prev => (prev === 4 ? 0 : prev + 1));
   };
 
   return (
@@ -119,6 +129,19 @@ const Home = () => {
         }
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+          from { 
+            opacity: 0; 
+            transform: translateY(30px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          }
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
         }
       `}</style>
 
@@ -289,12 +312,8 @@ const Home = () => {
             
             <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                Sonido profesional para <span className="text-primary animate-pulse">cada momento</span>
+              Arriendo de equipamiento audio con la mejor calidad, ideal para <span className="font-semibold text-primary">fiestas</span> y <span className="font-semibold text-primary">eventos</span>
               </h2>
-              
-              <p className="text-lg md:text-xl font-light leading-relaxed text-white/90">
-                Arriendo de equipamiento audio con la mejor calidad, ideal para <span className="font-semibold text-primary">fiestas</span> y <span className="font-semibold text-primary">eventos</span>
-              </p>
               
               <div className="pt-2 text-center">
                 <button 
@@ -313,7 +332,11 @@ const Home = () => {
       {/* 3. NUESTROS EQUIPOS */}
       <section 
         id="products" 
-        className={`py-16 bg-slate-900 text-white transition-all duration-300 ${visibleSections.products ? 'opacity-100' : 'opacity-0'}`}
+        className={`py-16 bg-slate-900 text-white transition-all duration-500 ${
+          visibleSections.products 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-10'
+        }`}
         style={{
           width: '100%',
           position: 'relative',
@@ -325,7 +348,9 @@ const Home = () => {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Nuestros Equipos</h2>
+          <h2 className={`text-3xl md:text-4xl font-bold text-center mb-12 text-white transition-all duration-700 delay-100 ${
+            visibleSections.products ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>Nuestros Equipos</h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {[
@@ -467,6 +492,23 @@ const Home = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Nuestros Eventos</h2>
           
           <div className="relative">
+            {/* Navigation Arrows */}
+            <button 
+              onClick={goToPreviousEvent}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform -translate-x-2 md:translate-x-0"
+              aria-label="Imagen anterior"
+            >
+              <FaChevronLeft />
+            </button>
+            
+            <button 
+              onClick={goToNextEvent}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform translate-x-2 md:translate-x-0"
+              aria-label="Imagen siguiente"
+            >
+              <FaChevronRight />
+            </button>
+            
             <div className="overflow-hidden rounded-xl">
               <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentEvent * 100}%)` }}>
                 {[
@@ -497,17 +539,6 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="flex justify-center gap-3 mt-8">
-              {[0, 1, 2, 3, 4].map((dot) => (
-                <button
-                  key={dot}
-                  onClick={() => setCurrentEvent(dot)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    currentEvent === dot ? 'bg-white' : 'bg-white/30'
-                  }`}
-                />
-              ))}
             </div>
           </div>
         </div>
