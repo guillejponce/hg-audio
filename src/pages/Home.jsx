@@ -288,7 +288,7 @@ const Home = () => {
                 <div className="md:hidden pb-[150%]">
                 <iframe 
                   className="absolute top-0 left-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/u31qwQUeGuM?mute=1&autoplay=${visibleSections['video-showcase'] ? '1' : '0'}&portrait=1`}
+                  src={`https://www.youtube.com/embed/gKR7jlJatjE?mute=1&autoplay=${visibleSections['video-showcase'] ? '1' : '0'}&portrait=1`}
                   title="HG Audio - Equipamiento Profesional"
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -300,7 +300,7 @@ const Home = () => {
                 <div className="hidden md:block pb-[56.25%]">
                 <iframe 
                   className="absolute top-0 left-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/u31qwQUeGuM?mute=1&autoplay=${visibleSections['video-showcase'] ? '1' : '0'}`}
+                  src={`https://www.youtube.com/embed/gKR7jlJatjE?mute=1&autoplay=${visibleSections['video-showcase'] ? '1' : '0'}`}
                   title="HG Audio - Equipamiento Profesional"
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -312,7 +312,7 @@ const Home = () => {
             
             <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-              Arriendo de equipamiento audio con la mejor calidad, ideal para <span className="font-semibold text-primary">fiestas</span> y <span className="font-semibold text-primary">eventos</span>
+              Arriendo de equipamiento audio con la mejor calidad y servicios de DJ profesional, ideal para <span className="font-semibold text-primary">fiestas</span> y <span className="font-semibold text-primary">eventos</span>
               </h2>
               
               <div className="pt-2 text-center">
@@ -357,19 +357,19 @@ const Home = () => {
               {
                 title: "JBL EON 615",
                 description: "Ideal para eventos donde habrá DJ toda la noche",
-                features: ["1000 WATTS MAX - 500 RMS", "$40.000 - Un Parlante", "$60.000 - Dos Parlantes", "Arriendo incluye atril, cable e instalación"],
+                features: ["1000 WATTS MAX - 500 RMS", "$40.000 - Un Parlante", "$70.000 - Dos Parlantes", "Instalación depende de la complejidad del evento"],
                 image: product1
               },
               {
                 title: "JBL EON 715",
                 description: "Ideal para todo tipo de eventos, contiene bluetooth",
-                features: ["1300 WATTS MAX - 650 RMS", "$50.000 - Un Parlante", "$70.000 - Dos Parlantes", "Arriendo incluye atril, cable e instalación"],
+                features: ["1300 WATTS MAX - 650 RMS", "$50.000 - Un Parlante", "$80.000 - Dos Parlantes", "Instalación depende de la complejidad del evento"],
                 image: product2
               },
               {
                 title: "Wharfedale DVP-AX18",
                 description: "Subwoofer ideal para eventos donde se necesite un sonido fuerte y profundo",
-                features: ["1200 WATTS MAX - 600 RMS", "18 pulgadas", "$50.000 - Arriendo Unitario", "Arriendo incluye atril, cable e instalación"],
+                features: ["1200 WATTS MAX - 600 RMS", "18 pulgadas", "$50.000 - Arriendo Unitario", "Instalación depende de la complejidad del evento"],
                 image: product3
               }
             ].map((product, index) => (
@@ -405,7 +405,7 @@ const Home = () => {
           
           <div className="text-center mt-16">
             <p className="text-white/90 text-lg mb-5">
-              ¿Buscas arrendar varios equipos? revisa nuestro catálogo y consulta los packs de arriendo que tenemos disponible
+              ¿Buscas arrendar varios equipos o un DJ para tu evento? Revisa nuestros packs y servicios disponibles en el catálogo
             </p>
             <a
               href="/HGAudio.pdf"
@@ -463,7 +463,7 @@ const Home = () => {
                 <FaMusic />
               </div>
               <h4 className="text-xl font-semibold mb-2">4. ¡A Disfrutar!</h4>
-              <p className="text-white/80 text-base">Haremos de tu evento una experiencia inolvidable</p>
+              <p className="text-white/80 text-base">Con nuestros equipos de audio y servicio de DJ, haremos de tu evento una experiencia inolvidable</p>
             </div>
           </div>
           <div className="mt-10 text-center">
