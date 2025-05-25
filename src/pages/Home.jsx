@@ -694,14 +694,14 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">Instalación</h3>
                 <div className="text-center">
-                  <p className="text-white/90 font-medium mb-2">Instalación Gratuita en:</p>
+                  <p className="text-white/90 font-medium mb-2">Instalación incluida para comunas de:</p>
                   <ul className="text-white/80 space-y-1 mb-4">
                     <li>Lo Barnechea</li>
                     <li>Las Condes</li>
                     <li>Vitacura</li>
                   </ul>
                   <p className="text-white/70 text-sm">
-                    Otras comunas: $10.000 adicional por instalación o desinstalación
+                    Otras comunas: Depende de la complejidad del evento
                   </p>
                 </div>
               </div>
@@ -777,7 +777,7 @@ const Home = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span>Confirmación por escrito vía email</span>
+                    <span>Confirmación por escrito</span>
                   </li>
                 </ul>
               </div>
