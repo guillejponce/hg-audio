@@ -33,7 +33,7 @@ const Home = () => {
           }));
         });
       },
-      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -25% 0px" }
     );
 
     const sections = document.querySelectorAll('section[id]');
@@ -152,7 +152,7 @@ const Home = () => {
           {!isDiscountFormOpen ? (
             <div className="relative">
               <div 
-                className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-all duration-300"
+                className="bg-white text-black w-16 h-16 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-all duration-300"
                 onClick={() => setIsDiscountFormOpen(true)}
               >
                 <div className="flex flex-col items-center">
@@ -178,8 +178,8 @@ const Home = () => {
               </button>
               
               <div className="flex items-center gap-3 mb-4">
-                <div className="bg-primary w-10 h-10 rounded-full flex items-center justify-center">
-                  <FaPercent className="text-xl text-white" />
+                <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center">
+                  <FaPercent className="text-xl text-black" />
                 </div>
                 <h3 className="text-white text-xl font-bold">¡Obtén un 10% de descuento!</h3>
               </div>
@@ -219,7 +219,7 @@ const Home = () => {
                     
                     <button 
                       type="submit"
-                      className="w-full bg-primary text-white py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                      className="w-full bg-white text-black py-2.5 rounded-lg font-semibold hover:bg-white/90 hover:text-black/80 transition-colors"
                     >
                       Obtener Descuento
                     </button>
@@ -311,16 +311,16 @@ const Home = () => {
             </div>
             
             <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-              Arriendo de equipamiento audio con la mejor calidad y servicios de DJ profesional, ideal para <span className="font-semibold text-primary">fiestas</span> y <span className="font-semibold text-primary">eventos</span>
+              <h2 className="text-lg md:text-2xl font-bold text-white leading-tight">
+                Llevamos <span className="font-extrabold text-primary">DJ</span> y <span className="font-extrabold text-primary">sonido profesional</span> directo a <span className="font-extrabold">tu espacio</span>. Nosotros ponemos el <span className="font-extrabold">ritmo</span> y tú solo te preocupas de <span className="font-extrabold">disfrutar</span>.
               </h2>
               
               <div className="pt-2 text-center">
                 <button 
                   onClick={scrollToContact}
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-2 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors"
                 >
-                  <span>Cotiza ahora</span>
+                  <span>Cotiza DJ o equipo</span>
                   <FaHeadphones className="text-xl animate-pulse" />
                 </button>
               </div>
@@ -394,7 +394,7 @@ const Home = () => {
                   </ul>
                   <button 
                     onClick={scrollToContact}
-                    className="w-full py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors"
+                    className="w-full py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors"
                   >
                     Consultar Disponibilidad
                   </button>
@@ -408,9 +408,9 @@ const Home = () => {
               ¿Buscas arrendar varios equipos o un DJ para tu evento? Revisa nuestros packs y servicios disponibles en el catálogo
             </p>
             <a
-              href="/HGAudio.pdf"
+              href="/hgaudio.pdf"
               download
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors group"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors group"
             >
               <FaSearch className="text-xl group-hover:scale-110 transition-transform" />
               <span>Ver Catálogo</span>
@@ -428,9 +428,9 @@ const Home = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1 text-center group">
               <div className="inline-flex gap-3 text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                <FaWhatsapp />
-                <FaInstagram />
-                <FaEnvelope />
+                <FaWhatsapp className="text-3xl text-white" />
+                <FaInstagram className="text-3xl text-white" />
+                <FaEnvelope className="text-3xl text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-2">1. Contáctanos</h4>
               <p className="text-white/80 text-base">Escríbenos por WhatsApp, Instagram o correo electrónico</p>
@@ -440,7 +440,7 @@ const Home = () => {
 
             <div className="flex-1 text-center group">
               <div className="inline-block text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                <FaFileAlt />
+                <FaFileAlt className="text-3xl text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-2">2. Cotización</h4>
               <p className="text-white/80 text-base">Recibe una cotización personalizada para tu evento</p>
@@ -450,7 +450,7 @@ const Home = () => {
 
             <div className="flex-1 text-center group">
               <div className="inline-block text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                <FaHeadphones />
+                <FaHeadphones className="text-3xl text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-2">3. Instalación</h4>
               <p className="text-white/80 text-base">Nos encargamos de la instalación y prueba del equipo</p>
@@ -460,7 +460,7 @@ const Home = () => {
 
             <div className="flex-1 text-center group">
               <div className="inline-block text-3xl mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                <FaMusic />
+                <FaMusic className="text-3xl text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-2">4. ¡A Disfrutar!</h4>
               <p className="text-white/80 text-base">Con nuestros equipos de audio y servicio de DJ, haremos de tu evento una experiencia inolvidable</p>
@@ -605,16 +605,16 @@ const Home = () => {
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center"></div>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
               <a
-                href="https://wa.me/56993197957"
+                href="https://wa.me/56993107957"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaWhatsapp className="text-3xl text-primary" />
+                  <FaWhatsapp className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">WhatsApp</h3>
-                <span className="text-white/90">+56 9 9319 7957</span>
+                <span className="text-white/90">+56 9 9310 7957</span>
               </a>
 
               <a
@@ -624,7 +624,7 @@ const Home = () => {
                 className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaInstagram className="text-3xl text-primary" />
+                  <FaInstagram className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Instagram</h3>
                 <span className="text-white/90">@hgaudiocl</span>
@@ -635,7 +635,7 @@ const Home = () => {
                 className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaEnvelope className="text-3xl text-primary" />
+                  <FaEnvelope className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Email</h3>
                 <span className="text-white/90">info@hgaudio.cl</span>
@@ -660,7 +660,7 @@ const Home = () => {
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
               <div className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaCreditCard className="text-3xl text-primary" />
+                  <FaCreditCard className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Método de Pago</h3>
                 <span className="text-white/90">Transferencia Electrónica</span>
@@ -668,7 +668,7 @@ const Home = () => {
 
               <div className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaFileAlt className="text-3xl text-primary" />
+                  <FaFileAlt className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">Términos de Reserva</h3>
                 <div className="space-y-2 text-center">
@@ -685,7 +685,7 @@ const Home = () => {
 
               <div className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
-                  <FaMusic className="text-3xl text-primary" />
+                  <FaMusic className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">Instalación</h3>
                 <div className="text-center">
@@ -715,7 +715,7 @@ const Home = () => {
               <div className="flex flex-col p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full group-hover:scale-110 transition-transform">
-                    <FaHeadphones className="text-3xl text-primary" />
+                    <FaHeadphones className="text-3xl text-black" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">Equipamiento</h3>
                 </div>
@@ -738,7 +738,7 @@ const Home = () => {
               <div className="flex flex-col p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full group-hover:scale-110 transition-transform">
-                    <FaFileAlt className="text-3xl text-primary" />
+                    <FaFileAlt className="text-3xl text-black" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">Cancelaciones</h3>
                 </div>
@@ -757,7 +757,7 @@ const Home = () => {
               <div className="flex flex-col p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full group-hover:scale-110 transition-transform">
-                    <FaCreditCard className="text-3xl text-primary" />
+                    <FaCreditCard className="text-3xl text-black" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">Pagos y Reservas</h3>
                 </div>
@@ -780,7 +780,7 @@ const Home = () => {
               <div className="flex flex-col p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full group-hover:scale-110 transition-transform">
-                    <FaShieldAlt className="text-3xl text-primary" />
+                    <FaShieldAlt className="text-3xl text-black" />
                   </div>
                   <h3 className="text-xl font-semibold text-white">Responsabilidades</h3>
                 </div>
@@ -821,10 +821,10 @@ const Home = () => {
             
             <div className="flex items-center gap-6">
               <a
-                href="https://wa.me/56993197957"
+                href="https://wa.me/56993107957"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-primary transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
               >
                 <FaWhatsapp className="text-xl" />
               </a>
@@ -832,13 +832,13 @@ const Home = () => {
                 href="https://instagram.com/hgaudiocl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-primary transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
               >
                 <FaInstagram className="text-xl" />
               </a>
               <a
                 href="mailto:info@hgaudio.cl"
-                className="text-white/70 hover:text-primary transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
               >
                 <FaEnvelope className="text-xl" />
               </a>
