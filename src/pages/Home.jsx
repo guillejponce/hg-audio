@@ -12,7 +12,7 @@ import product3 from '../assets/products/product_3.png';
 
 const Home = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
-  const [visibleSections, setVisibleSections] = useState({});
+  const [visibleSections, setVisibleSections] = useState({ products: true });
   const [isDiscountFormOpen, setIsDiscountFormOpen] = useState(false);
   const [showDiscountIcon, setShowDiscountIcon] = useState(false);
   const [userClosedDiscount, setUserClosedDiscount] = useState(false);
@@ -27,10 +27,12 @@ const Home = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          setVisibleSections(prev => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting
-          }));
+          if (entry.target.id !== 'products') {
+            setVisibleSections(prev => ({
+              ...prev,
+              [entry.target.id]: entry.isIntersecting
+            }));
+          }
         });
       },
       { threshold: 0.05, rootMargin: "0px 0px -25% 0px" }
@@ -332,11 +334,7 @@ const Home = () => {
       {/* 3. NUESTROS EQUIPOS */}
       <section 
         id="products" 
-        className={`py-16 bg-slate-900 text-white transition-all duration-500 ${
-          visibleSections.products 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-10'
-        }`}
+        className="py-16 bg-slate-900 text-white"
         style={{
           width: '100%',
           position: 'relative',
@@ -348,9 +346,7 @@ const Home = () => {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <h2 className={`text-3xl md:text-4xl font-bold text-center mb-12 text-white transition-all duration-700 delay-100 ${
-            visibleSections.products ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>Nuestros Equipos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Nuestros Equipos</h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {[
