@@ -5,7 +5,7 @@ import event1 from '../assets/events/event_1.jpeg';
 import event2 from '../assets/events/event_2.jpeg';
 import event3 from '../assets/events/event_3.jpeg';
 import event4 from '../assets/events/event_4.jpeg';
-import event6 from '../assets/events/event_6.jpeg';
+import event5 from '../assets/events/event_5.jpeg';
 import product1 from '../assets/products/product_1.png';
 import product2 from '../assets/products/product_2.png';
 import product3 from '../assets/products/product_3.png';
@@ -403,14 +403,23 @@ const Home = () => {
             <p className="text-white/90 text-lg mb-5">
               ¿Buscas arrendar varios equipos o un DJ para tu evento? Revisa nuestros packs y servicios disponibles en el catálogo
             </p>
-            <a
-              href="/hgaudio.pdf"
-              download
-              className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors group"
-            >
-              <FaSearch className="text-xl group-hover:scale-110 transition-transform" />
-              <span>Ver Catálogo</span>
-            </a>
+            <div className="flex flex-col md:flex-row justify-center gap-4">
+              <a
+                href="/hgaudio.pdf"
+                download
+                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors group"
+              >
+                <FaSearch className="text-xl group-hover:scale-110 transition-transform" />
+                <span>Ver Catálogo</span>
+              </a>
+              <button
+                onClick={scrollToContact}
+                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors group"
+              >
+                <FaMusic className="text-xl group-hover:scale-110 transition-transform" />
+                <span>Consulta por DJ</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -521,7 +530,7 @@ const Home = () => {
                     image: event4
                   },
                   {
-                    image: event6
+                    image: event5
                   },
                 ].map((event, index) => (
                   <div key={index} className="w-full flex-shrink-0">
