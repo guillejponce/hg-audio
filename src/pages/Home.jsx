@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { FaPhone, FaHeadphones, FaMusic, FaVolumeUp, FaWhatsapp, FaInstagram, FaEnvelope, FaCreditCard, FaFileAlt, FaShieldAlt, FaDownload, FaPercent, FaTimes, FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaPhone, FaHeadphones, FaMusic, FaWhatsapp, FaInstagram, FaEnvelope, FaCreditCard, FaFileAlt, FaShieldAlt, FaPercent, FaTimes, FaSearch, FaChevronLeft, FaChevronRight, FaUser, FaQuoteLeft } from 'react-icons/fa';
 import logo from '../assets/hg_audio_logo.png';
 import event1 from '../assets/events/event_1.jpeg';
 import event2 from '../assets/events/event_2.jpeg';
 import event3 from '../assets/events/event_3.jpeg';
 import event4 from '../assets/events/event_4.jpeg';
 import event5 from '../assets/events/event_5.jpeg';
+import event6 from '../assets/events/event_6.jpeg';
+import event7 from '../assets/events/event_7.jpeg';
+import eventFinal from '../assets/events/event_final.jpeg';
 import product1 from '../assets/products/product_1.png';
 import product2 from '../assets/products/product_2.png';
 import product3 from '../assets/products/product_3.png';
@@ -21,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentEvent(prev => (prev + 1) % 5);
+      setCurrentEvent(prev => (prev + 1) % 8);
     }, 5000);
 
     const observer = new IntersectionObserver(
@@ -115,11 +118,11 @@ const Home = () => {
   };
 
   const goToPreviousEvent = () => {
-    setCurrentEvent(prev => (prev === 0 ? 4 : prev - 1));
+    setCurrentEvent(prev => (prev === 0 ? 7 : prev - 1));
   };
 
   const goToNextEvent = () => {
-    setCurrentEvent(prev => (prev === 4 ? 0 : prev + 1));
+    setCurrentEvent(prev => (prev === 7 ? 0 : prev + 1));
   };
 
   return (
@@ -532,6 +535,15 @@ const Home = () => {
                   {
                     image: event5
                   },
+                  {
+                    image: event6
+                  },
+                  {
+                    image: event7
+                  },
+                  {
+                    image: eventFinal
+                  },
                 ].map((event, index) => (
                   <div key={index} className="w-full flex-shrink-0">
                     <div className="relative h-[450px] rounded-xl overflow-hidden">
@@ -557,43 +569,52 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-white">Lo que dicen nuestros clientes</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
-                name: "Carolina Méndez",
-                role: "Matrimonio en Viña del Mar",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
-                testimonial: "El sonido fue increíble durante toda la fiesta. El equipo llegó puntual y la instalación fue impecable."
+                name: "Graciela Naon",
+                event: "Fiesta 80 años",
+                testimonial: "Lo pase bomba, muchisimas gracias por cumplir todos mis caprichos, cumplieron lo que me dijeron, fue una noche espectacular."
               },
               {
-                name: "Andrés Gutiérrez",
-                role: "Evento Corporativo",
-                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
-                testimonial: "Contratamos a HG Audio para nuestra conferencia anual y superaron todas nuestras expectativas."
+                name: "Andrés Vial",
+                event: "Fiesta de cumpleaños Universitaria",
+                testimonial: "Se nota que saben lo que hacen y que les importa que el evento salga bien. Los recomiendo a ojos cerrados si quieren armar algo con buen audio y sin complicaciones."
               },
               {
-                name: "Valentina Torres",
-                role: "Fiesta de Graduación",
-                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
-                testimonial: "Excelente calidad de sonido, iluminación perfecta y un equipo muy profesional."
+                name: "Pedro Barrientos",
+                event: "Fiesta 18 años",
+                testimonial: "El evento estuvo buenísimo, me celebre el cumpleaños con un amigo y le dijimos al dj que música queríamos. El equipo muy profesional, se mantuvo un ambiente perfecto con el cumpleaños prendido."
               },
               {
-                name: "Rodrigo Sánchez",
-                role: "Concierto en vivo",
-                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
-                testimonial: "Como músico, soy exigente con el sonido. HG Audio entendió exactamente lo que necesitábamos."
+                name: "Valentina",
+                event: "Ambientación Restaurant",
+                testimonial: "Los chicos son super responsables y resolutivos! Siempre pendientes de dar un buen servicio y que todo salga perfecto! 100% recomendados."
+              },
+              {
+                name: "Ana Moreira",
+                event: "Fiesta de cumpleaños extranjera",
+                testimonial: "Fue todo super bueno, se lo recomendé a todas mis amigas."
               }
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white/5 rounded-lg p-4 flex gap-4 items-start">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-                />
-                <div>
-                  <p className="text-white/80 text-sm italic mb-2">"{testimonial.testimonial}"</p>
-                  <p className="font-semibold text-white text-sm">{testimonial.name}</p>
-                  <p className="text-white/60 text-xs">{testimonial.role}</p>
+              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group h-full flex flex-col min-h-[200px] md:min-h-[220px]">
+                <div className="flex items-start gap-3 mb-4 flex-1">
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors mt-1">
+                    <FaUser className="text-white/70 text-sm md:text-base" />
+                  </div>
+                  <div className="flex-1 flex flex-col h-full">
+                    <FaQuoteLeft className="text-white/30 text-base md:text-lg mb-3 flex-shrink-0" />
+                    <p className="text-white/80 text-sm md:text-base italic leading-relaxed flex-1">
+                      {testimonial.testimonial}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1 pt-3 border-t border-white/10 mt-auto">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-1 bg-white rounded-full flex-shrink-0"></div>
+                    <p className="font-semibold text-white text-sm md:text-base">{testimonial.name}</p>
+                  </div>
+                  <p className="text-white/60 text-xs md:text-sm ml-3 italic">{testimonial.event}</p>
                 </div>
               </div>
             ))}
@@ -636,14 +657,14 @@ const Home = () => {
               </a>
 
               <a
-                href="mailto:info@hgaudio.cl"
+                href="mailto:contacto@hgaudio.cl"
                 className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-white rounded-full mb-4 group-hover:scale-110 transition-transform">
                   <FaEnvelope className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Email</h3>
-                <span className="text-white/90">info@hgaudio.cl</span>
+                <span className="text-white/90">contacto@hgaudio.cl</span>
               </a>
             </div>
             
@@ -842,7 +863,7 @@ const Home = () => {
                 <FaInstagram className="text-xl" />
               </a>
               <a
-                href="mailto:info@hgaudio.cl"
+                href="mailto:contacto@hgaudio.cl"
                 className="text-white/70 hover:text-white transition-colors"
               >
                 <FaEnvelope className="text-xl" />
