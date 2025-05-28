@@ -12,6 +12,7 @@ import eventFinal from '../assets/events/event_final.jpeg';
 import product1 from '../assets/products/product_1.png';
 import product2 from '../assets/products/product_2.png';
 import product3 from '../assets/products/product_3.png';
+import aboutUs from '../assets/about_us.jpeg';
 
 const Home = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
@@ -24,7 +25,10 @@ const Home = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentEvent(prev => (prev + 1) % 8);
+      // Check if we're on mobile or desktop to determine max positions
+      const isMobile = window.innerWidth < 768;
+      const maxPositions = isMobile ? 8 : 6; // Mobile: 8 photos, Desktop: 6 positions (showing 3 at a time)
+      setCurrentEvent(prev => (prev + 1) % maxPositions);
     }, 5000);
 
     const observer = new IntersectionObserver(
@@ -118,11 +122,13 @@ const Home = () => {
   };
 
   const goToPreviousEvent = () => {
-    setCurrentEvent(prev => (prev === 0 ? 7 : prev - 1));
+    const maxPositions = 8; // Mobile: 8 photos, Desktop: 6 positions
+    setCurrentEvent(prev => (prev === 0 ? maxPositions - 1 : prev - 1));
   };
 
   const goToNextEvent = () => {
-    setCurrentEvent(prev => (prev === 7 ? 0 : prev + 1));
+    const maxPositions = 8; // Mobile: 8 photos, Desktop: 6 positions
+    setCurrentEvent(prev => (prev === maxPositions - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -518,43 +524,67 @@ const Home = () => {
             </button>
             
             <div className="overflow-hidden rounded-xl">
-              <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentEvent * 100}%)` }}>
-                {[
-                  {
-                    image: event1
-                  },
-                  {
-                    image: event2
-                  },
-                  {
-                    image: event3
-                  },
-                  {
-                    image: event4
-                  },
-                  {
-                    image: event5
-                  },
-                  {
-                    image: event6
-                  },
-                  {
-                    image: event7
-                  },
-                  {
-                    image: eventFinal
-                  },
-                ].map((event, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <div className="relative h-[450px] rounded-xl overflow-hidden">
-                      <img 
-                        src={event.image} 
-                        alt={`Evento HG Audio ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
+              {/* Mobile: Single photo carousel */}
+              <div className="block md:hidden">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out" 
+                  style={{ transform: `translateX(-${currentEvent * 100}%)` }}
+                >
+                  {[
+                    { image: event1 },
+                    { image: event2 },
+                    { image: event3 },
+                    { image: event4 },
+                    { image: event5 },
+                    { image: event6 },
+                    { image: event7 },
+                    { image: eventFinal },
+                  ].map((event, index) => (
+                    <div key={index} className="w-full flex-shrink-0">
+                      <div className="relative h-[450px] rounded-xl overflow-hidden">
+                        <img 
+                          src={event.image} 
+                          alt={`Evento HG Audio ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          style={{ objectPosition: 'center' }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop: Three photos carousel */}
+              <div className="hidden md:block">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out" 
+                  style={{ 
+                    transform: `translateX(-${currentEvent * (100 / 3)}%)`,
+                    width: '300%'
+                  }}
+                >
+                  {[
+                    { image: event1 },
+                    { image: event2 },
+                    { image: event3 },
+                    { image: event4 },
+                    { image: event5 },
+                    { image: event6 },
+                    { image: event7 },
+                    { image: eventFinal },
+                  ].map((event, index) => (
+                    <div key={index} className="w-1/3 flex-shrink-0 px-2">
+                      <div className="relative h-[500px] lg:h-[600px] rounded-xl overflow-hidden">
+                        <img 
+                          src={event.image} 
+                          alt={`Evento HG Audio ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          style={{ objectPosition: 'center' }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -620,6 +650,73 @@ const Home = () => {
             ))}
           </div>
           
+        </div>
+      </section>
+
+      {/* 6.5. NOSOTROS */}
+      <section 
+        id="about" 
+        className={`py-16 bg-slate-900 text-white transition-all duration-300 ${visibleSections.about ? 'opacity-100' : 'opacity-0'}`}
+        style={{
+          width: '100%',
+          position: 'relative',
+          backgroundImage: `url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'overlay',
+          backgroundColor: 'rgba(15, 23, 42, 0.92)'
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Nosotros</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+            {/* Imagen */}
+            <div className="lg:col-span-1 flex justify-center">
+              <div className="relative w-full max-w-md">
+                <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+                  <img 
+                    src={aboutUs} 
+                    alt="HG Audio Team"
+                    className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Misión y Visión */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Misión */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center">
+                    <FaMusic className="text-xl md:text-3xl text-black" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">Nuestra Misión</h3>
+                </div>
+                <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
+                  En HGAudio creamos experiencias sonoras que elevan cada evento.
+                  Nos dedicamos al arriendo de sonido profesional, DJs y ambientación musical personalizada para fiestas, eventos privados, corporativos y activaciones.
+                  Nuestra misión es entregar un servicio cercano, de alta calidad y con un sello que se siente, adaptándonos a cada espacio, estilo y cliente.
+                </p>
+              </div>
+
+              {/* Visión */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center">
+                    <FaHeadphones className="text-xl md:text-3xl text-black" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">Nuestra Visión</h3>
+                </div>
+                <p className="text-white/90 text-sm md:text-base lg:text-lg leading-relaxed">
+                  Ser reconocidos como la productora de sonido joven más versátil e innovadora de Chile.
+                  Queremos que HGAudio suene fuerte en eventos de todo tipo, expandiendo nuestra propuesta a nivel nacional, colaborando con marcas, y convirtiéndonos en sinónimo de buena música, buen trato y eventos inolvidables.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
