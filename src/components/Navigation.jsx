@@ -13,6 +13,7 @@ const Navigation = () => {
     { name: 'Proceso', to: 'process' },
     { name: 'Eventos', to: 'events' },
     { name: 'Testimonios', to: 'testimonials' },
+    { name: 'Nosotros', to: 'about' },
     { name: 'Contacto', to: 'contact' },
     { name: 'Pagos', to: 'payment' },
     { name: 'Términos', to: 'terms' },
