@@ -625,6 +625,11 @@ const Home = () => {
                 name: "Ana Moreira",
                 event: "Fiesta de cumpleaños extranjera",
                 testimonial: "Fue todo super bueno, se lo recomendé a todas mis amigas."
+              },
+              {
+                name: "FLAK",
+                event: "DJ Profesional",
+                testimonial: "Con HG audio no solo encontré audio profesional y de calidad si no que una experiencia, fue tanto lo que me gustó trabajar con ellos que terminé involucrado en el proyecto y al estar más cerca me di cuenta que son profesionales para su corto tiempo en la industria."
               }
             ].map((testimonial, index) => (
               <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group h-full flex flex-col min-h-[200px] md:min-h-[220px]">
