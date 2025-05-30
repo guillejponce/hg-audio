@@ -13,6 +13,7 @@ import product1 from '../assets/products/product_1.png';
 import product2 from '../assets/products/product_2.png';
 import product3 from '../assets/products/product_3.png';
 import aboutUs from '../assets/about_us.jpeg';
+import catalogoPDF from '../assets/hgaudio.pdf';
 
 const Home = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
@@ -414,7 +415,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <a
-                href="/hgaudio.pdf"
+                href={catalogoPDF}
                 download
                 className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 hover:text-black/80 transition-colors group"
               >
