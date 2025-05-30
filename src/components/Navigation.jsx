@@ -1,23 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-scroll';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useScrollDirection } from '../hooks/useScrollDirection';
+import useScrollToSection from '../hooks/useScrollToSection';
+import { MENU_ITEMS } from '../utils/routes';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const scrollDirection = useScrollDirection();
+  const scrollToSection = useScrollToSection();
+  const location = useLocation();
 
-  const menuItems = [
-    { name: 'Inicio', to: 'hero' },
-    { name: 'Video', to: 'video-showcase' },
-    { name: 'Equipos', to: 'products' },
-    { name: 'Proceso', to: 'process' },
-    { name: 'Eventos', to: 'events' },
-    { name: 'Testimonios', to: 'testimonials' },
-    { name: 'Nosotros', to: 'about' },
-    { name: 'Contacto', to: 'contact' },
-    { name: 'Pagos', to: 'payment' },
-    { name: 'Términos', to: 'terms' },
-  ];
+  const handleMenuClick = (item) => {
+    if (location.pathname === '/' || location.pathname === item.path) {
+      // Si ya estamos en la página principal o en la ruta de la sección, solo hacer scroll
+      scrollToSection(item.to, false);
+    } else {
+      // Si estamos en otra página, navegar y hacer scroll
+      scrollToSection(item.to, true);
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-[2px] transition-transform duration-300 ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}>
@@ -25,16 +27,14 @@ const Navigation = () => {
         <div className="flex items-center justify-end h-16">
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-6">
-            {menuItems.map((item) => (
-              <Link
+            {MENU_ITEMS.map((item) => (
+              <button
                 key={item.to}
-                to={item.to}
-                smooth={true}
-                duration={500}
+                onClick={() => handleMenuClick(item)}
                 className="text-white/90 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
               >
                 {item.name}
-              </Link>
+              </button>
             ))}
           </div>
 
@@ -58,17 +58,14 @@ const Navigation = () => {
       {/* Mobile menu */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/30 backdrop-blur-[4px]">
-          {menuItems.map((item) => (
-            <Link
+          {MENU_ITEMS.map((item) => (
+            <button
               key={item.to}
-              to={item.to}
-              smooth={true}
-              duration={500}
-              className="block px-3 py-2 rounded-md text-base font-medium text-white/90 hover:text-white cursor-pointer hover:bg-white/5 transition-colors duration-200"
-              onClick={() => setIsOpen(false)}
+              onClick={() => handleMenuClick(item)}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white/90 hover:text-white cursor-pointer hover:bg-white/5 transition-colors duration-200"
             >
               {item.name}
-            </Link>
+            </button>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaPhone, FaHeadphones, FaMusic, FaWhatsapp, FaInstagram, FaEnvelope, FaCreditCard, FaFileAlt, FaShieldAlt, FaPercent, FaTimes, FaSearch, FaChevronLeft, FaChevronRight, FaUser, FaQuoteLeft } from 'react-icons/fa';
+import useScrollToSection from '../hooks/useScrollToSection';
 import logo from '../assets/hg_audio_logo.png';
 import event1 from '../assets/events/event_1.jpeg';
 import event2 from '../assets/events/event_2.jpeg';
@@ -15,7 +16,7 @@ import product3 from '../assets/products/product_3.png';
 import aboutUs from '../assets/about_us.jpeg';
 import catalogoPDF from '../assets/hgaudio.pdf';
 
-const Home = () => {
+const Home = ({ section }) => {
   const [currentEvent, setCurrentEvent] = useState(0);
   const [visibleSections, setVisibleSections] = useState({ products: true });
   const [isDiscountFormOpen, setIsDiscountFormOpen] = useState(false);
@@ -23,6 +24,19 @@ const Home = () => {
   const [userClosedDiscount, setUserClosedDiscount] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  
+  const scrollToSection = useScrollToSection();
+
+  useEffect(() => {
+    // Si se proporciona una sección, hacer scroll a ella después de que se monte el componente
+    if (section) {
+      const timer = setTimeout(() => {
+        scrollToSection(section, false); // No actualizar URL ya que ya estamos en la ruta correcta
+      }, 100); // Pequeño delay para asegurar que el DOM esté listo
+      
+      return () => clearTimeout(timer);
+    }
+  }, [section, scrollToSection]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -66,8 +80,7 @@ const Home = () => {
   }, [userClosedDiscount]);
 
   const scrollToContact = () => {
-    const contactSection = document.querySelector('#contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection('contact');
   };
 
   const handleFormChange = (e) => {
@@ -280,7 +293,7 @@ const Home = () => {
         
         <div className="absolute bottom-2 left-0 right-0 flex justify-center animate-bounce">
           <div className="flex flex-col items-center text-white/80 cursor-pointer" onClick={() => {
-            document.getElementById('video-showcase').scrollIntoView({ behavior: 'smooth' });
+            scrollToSection('video-showcase');
           }}>
             <span className="text-xs mb-1">Desliza hacia abajo</span>
             <div className="w-6 h-6 flex items-center justify-center border-2 border-white/40 rounded-full">
