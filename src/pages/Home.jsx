@@ -78,7 +78,7 @@ const Home = () => {
     e.preventDefault();
     
     // Send data to Formspree
-    fetch('https://formspree.io/f/xqaqoajd', {
+    fetch('https://formspree.io/f/manjwoaq', {
       method: 'POST',
       body: JSON.stringify({
         name: formData.name,
