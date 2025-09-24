@@ -9,6 +9,10 @@ import event4 from '../assets/events/event_4.jpeg';
 import event5 from '../assets/events/event_5.jpeg';
 import event6 from '../assets/events/event_6.jpeg';
 import event7 from '../assets/events/event_7.jpeg';
+import event8 from '../assets/events/event_8.jpeg';
+import event9 from '../assets/events/event_9.jpeg';
+import event10 from '../assets/events/event_10.jpeg';
+import event11 from '../assets/events/event_11.jpeg';
 import eventFinal from '../assets/events/event_final.jpeg';
 import product1 from '../assets/products/product_1.png';
 import product2 from '../assets/products/product_2.png';
@@ -18,6 +22,7 @@ import catalogoPDF from '../assets/hgaudio.pdf';
 
 const Home = ({ section }) => {
   const [currentEvent, setCurrentEvent] = useState(0);
+  const [shuffledEvents, setShuffledEvents] = useState([]);
   const [visibleSections, setVisibleSections] = useState({ products: true });
   const [isDiscountFormOpen, setIsDiscountFormOpen] = useState(false);
   const [showDiscountIcon, setShowDiscountIcon] = useState(false);
@@ -26,6 +31,29 @@ const Home = ({ section }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   
   const scrollToSection = useScrollToSection();
+
+  useEffect(() => {
+    const allEvents = [
+      { image: event1 },
+      { image: event2 },
+      { image: event3 },
+      { image: event4 },
+      { image: event5 },
+      { image: event6 },
+      { image: event7 },
+      { image: event8 },
+      { image: event9 },
+      { image: event10 },
+      { image: event11 },
+    ];
+
+    const finalEvent = { image: eventFinal };
+    
+    // Shuffle all events except the final one
+    const shuffled = allEvents.sort(() => 0.5 - Math.random());
+    
+    setShuffledEvents([...shuffled, finalEvent]);
+  }, []);
 
   useEffect(() => {
     // Si se proporciona una sección, hacer scroll a ella después de que se monte el componente
@@ -39,10 +67,12 @@ const Home = ({ section }) => {
   }, [section, scrollToSection]);
 
   useEffect(() => {
+    if (shuffledEvents.length === 0) return;
+
     const timer = setInterval(() => {
       // Check if we're on mobile or desktop to determine max positions
       const isMobile = window.innerWidth < 768;
-      const maxPositions = isMobile ? 8 : 6; // Mobile: 8 photos, Desktop: 6 positions (showing 3 at a time)
+      const maxPositions = isMobile ? shuffledEvents.length : shuffledEvents.length - 2;
       setCurrentEvent(prev => (prev + 1) % maxPositions);
     }, 5000);
 
@@ -77,7 +107,7 @@ const Home = ({ section }) => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [userClosedDiscount]);
+  }, [userClosedDiscount, shuffledEvents.length]);
 
   const scrollToContact = () => {
     scrollToSection('contact');
@@ -136,12 +166,16 @@ const Home = ({ section }) => {
   };
 
   const goToPreviousEvent = () => {
-    const maxPositions = 8; // Mobile: 8 photos, Desktop: 6 positions
+    if (shuffledEvents.length === 0) return;
+    const isMobile = window.innerWidth < 768;
+    const maxPositions = isMobile ? shuffledEvents.length : shuffledEvents.length - 2;
     setCurrentEvent(prev => (prev === 0 ? maxPositions - 1 : prev - 1));
   };
 
   const goToNextEvent = () => {
-    const maxPositions = 8; // Mobile: 8 photos, Desktop: 6 positions
+    if (shuffledEvents.length === 0) return;
+    const isMobile = window.innerWidth < 768;
+    const maxPositions = isMobile ? shuffledEvents.length : shuffledEvents.length - 2;
     setCurrentEvent(prev => (prev === maxPositions - 1 ? 0 : prev + 1));
   };
 
@@ -544,16 +578,7 @@ const Home = ({ section }) => {
                   className="flex transition-transform duration-500 ease-in-out" 
                   style={{ transform: `translateX(-${currentEvent * 100}%)` }}
                 >
-                  {[
-                    { image: event1 },
-                    { image: event2 },
-                    { image: event3 },
-                    { image: event4 },
-                    { image: event5 },
-                    { image: event6 },
-                    { image: event7 },
-                    { image: eventFinal },
-                  ].map((event, index) => (
+                  {shuffledEvents.map((event, index) => (
                     <div key={index} className="w-full flex-shrink-0">
                       <div className="relative h-[450px] rounded-xl overflow-hidden">
                         <img 
@@ -574,19 +599,10 @@ const Home = ({ section }) => {
                   className="flex transition-transform duration-500 ease-in-out" 
                   style={{ 
                     transform: `translateX(-${currentEvent * (100 / 3)}%)`,
-                    width: '300%'
+                    width: `${shuffledEvents.length * 100 / 3}%`
                   }}
                 >
-                  {[
-                    { image: event1 },
-                    { image: event2 },
-                    { image: event3 },
-                    { image: event4 },
-                    { image: event5 },
-                    { image: event6 },
-                    { image: event7 },
-                    { image: eventFinal },
-                  ].map((event, index) => (
+                  {shuffledEvents.map((event, index) => (
                     <div key={index} className="w-1/3 flex-shrink-0 px-2">
                       <div className="relative h-[500px] lg:h-[600px] rounded-xl overflow-hidden">
                         <img 
@@ -644,6 +660,21 @@ const Home = ({ section }) => {
                 name: "FLAK",
                 event: "DJ Profesional",
                 testimonial: "Con HG audio no solo encontré audio profesional y de calidad si no que una experiencia, fue tanto lo que me gustó trabajar con ellos que terminé involucrado en el proyecto y al estar más cerca me di cuenta que son profesionales para su corto tiempo en la industria."
+              },
+              {
+                name: "Pedro Boza",
+                event: "Evento corporativo",
+                testimonial: "Todo muy bien! Muchas gracias por todo, a todos les encantó el estilo musical."
+              },
+              {
+                name: "Cristobal Poirot",
+                event: "DJ Reconocido de club",
+                testimonial: "HGAudio destaca por su profesionalismo, su marca con gran proyección y un equipamiento de primera calidad. La atención al cliente es cercana y confiable, lo que hace que cada evento sea una experiencia segura y bien ejecutada. En conjunto, HGAudio es una opción sólida y confiable para quienes buscan calidad y seriedad en la producción de eventos."
+              },
+              {
+                name: "Nicolás Sanhueza",
+                event: "DJ",
+                testimonial: "Soy DJ y trabajé con el equipo HGAudio para un evento y el resultado fue muy satisfactorio. Cuentan con audio pro, luces y cabina que le daba un toque profesional a todo el evento."
               }
             ].map((testimonial, index) => (
               <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group h-full flex flex-col min-h-[200px] md:min-h-[220px]">
@@ -747,7 +778,7 @@ const Home = ({ section }) => {
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center"></div>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
               <a
-                href="https://wa.me/56993107957"
+                href="https://wa.me/56964664305"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center p-8 bg-white/10 backdrop-blur-sm rounded-2xl hover:bg-white/20 transition-all group"
@@ -756,7 +787,7 @@ const Home = ({ section }) => {
                   <FaWhatsapp className="text-3xl text-black" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">WhatsApp</h3>
-                <span className="text-white/90">+56 9 9310 7957</span>
+                <span className="text-white/90">+56 9 6466 4305</span>
               </a>
 
               <a
@@ -963,7 +994,7 @@ const Home = ({ section }) => {
             
             <div className="flex items-center gap-6">
               <a
-                href="https://wa.me/56993107957"
+                href="https://wa.me/56964664305"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/70 hover:text-white transition-colors"
